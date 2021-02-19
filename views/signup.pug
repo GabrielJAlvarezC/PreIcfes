@@ -1,0 +1,55 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        link(rel="stylesheet", href="/css/style.css")
+        title= title
+    body 
+        main.main 
+            .signupForm
+                form.form.formSignup
+                    .form__pair
+                        label.form__label(for='username') Nombre
+                        input#username.form__input(type='text', required)
+                    .form__pair
+                        label.form__label(for='lastname') Apellido
+                        input#lastname.form__input(type='text', required)
+                    .form__pair
+                        label.form__label(for='email') Correo electrónico
+                        input#email.form__input(type='text', placeholder='you@example.com', required)
+                    .form__pair
+                        label.form__label(for='password') Contraseña
+                        input#password.form__input(type='password', placeholder='••••••••', required, minlength='8')
+                    .form__pair
+                        label.form__label(for='passwordConfirm') Confirmar Contraseña
+                        input#passwordConfirm.form__input(type='password', placeholder='••••••••', required,    minlength='8')
+                    .form__pair
+                        label.form__label(for='grade') Grado
+                        select#grade.form__select(name="grado")
+                            option(value="" disabled selected hidden) Selecciona un Grado
+                            option.form__option(value="primero") Primero
+                            option.form__option(value="segundo") Segundo
+                            option.form__option(value="tercero") Tercero
+                            option.form__option(value="cuarto") Cuarto
+                            option.form__option(value="quinto") Quinto
+                            option.form__option(value="sexto") Sexto 
+                            option.form__option(value="septimo") Septimo
+                            option.form__option(value="octavo") Octavo
+                            option.form__option(value="noveno") Noveno
+                            option.form__option(value="decimo") Decimo
+                            option.form__option(value="undecimo") Undecimo
+                    .form__pair
+                        label.form__label(for='jornada') Jornada
+                        select#jornada.form__select(name="jornada")
+                            option(value="" disabled selected hidden) Selecciona una jornada
+                            option.form__option(value="mañana") Mañana
+                            option.form__option(value="tarde") Tarde 
+                            option.form__option(value="diurno") Diurno
+                    .form__pair
+                        button.btn.btn--green Crear cuenta
+            a.link.linkLogin(href="/") Ya tengo cuenta
+
+            script(src='/js/bundle.js')
+    

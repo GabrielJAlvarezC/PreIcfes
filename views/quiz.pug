@@ -1,0 +1,41 @@
+extends base 
+
+block append head 
+    <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+    </script>
+
+mixin overviewQuestion(nSlide, question, options)
+    div(class='slide' id=`slide-${nSlide}` data-currentQuestion=nSlide)
+        div(class='question__container')
+            p.question= question
+        //- .like__container
+        //-     button.btn.like__btn Me gusta
+        //-     button.btn.unliked__btn No me gusta
+        .options__container
+            - let n = 0;
+            while n < options.length
+                button(class=`btn__option` data-option= n)= options[n]
+                - n++;
+        
+        
+        
+block content 
+    main.main
+        section.question__container.main-grid 
+            .slider
+                - let i = 0;
+                while i < quiz.preguntas.length
+                    +overviewQuestion(i, quiz.preguntas[i].pregunta, quiz.preguntas[i].opciones)
+                    - i++
+                .arrows
+                    button.slider__btn.slider__btn--right &rarr;
+                    button.slider__btn.slider__btn--left &larr; 
+                .navQuestions
+                        
+                //- section.report__question
+                //- button.btn Reportar Pregunta
+
+                //- section.share__question
+                //- button.btn Compartir Pregunta

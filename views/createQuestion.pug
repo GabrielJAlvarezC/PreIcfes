@@ -1,0 +1,68 @@
+extends base 
+
+mixin getOptions(opt)
+    label(for=`options-${opt}`)= opt
+    textarea.options(name="options", id=`options-${opt}`) 
+
+block content 
+    section.section__question.main-grid
+        h2 Crea tus preguntas
+        form#form__question
+            .form-group 
+                label(for='category') Materia 
+                select#category.form__select(name="category")
+                    option(value="" disabled selected hidden) Selecciona una materia
+                    option(value="Matemáticas") Matemáticas 
+                    option(value="Física")  Física
+            .form__group
+                label(for='topic') Temas
+                select.algo#topic.form__select(name='topic')
+                
+            .form__group
+                label(for='subtopic') Subtemas
+                select#subtopic.form__select(name='subtopic')
+
+            .form__group
+                label(for="difficulty") Dificultad Promedio
+                select#difficulty.form__select(name='difficulty')
+                    each number in [0, 1, 2, 3, 4, 5]
+                        option.select__option-difficulty(selected=`${number}`)= `${number}`
+
+            .form__group 
+                label(for="type") Tipo de pregunta
+                select#format.form__select(name='type') 
+                    option(value="" disabled selected hidden) Selecciona el formato de pregunta
+                    option(value="Verdadero o Falso") Verdadero o Falso
+                    option(value="Seleccion Multiple") Selección multiple
+                    option(value="Multiple Respuesta") Multiple Respuesta
+
+            .form__group
+                label(for='question') Pregunta
+                textarea#question(name="question")
+
+            .form__group.form__options
+                each opt in ['A', 'B', 'C', 'D']
+                    +getOptions(opt)
+
+            .form__group
+                .multiple-choice
+                    label(for="answers") Respuesta
+                    - let i = 0;
+                    each option in ['A','B','C','D']
+                        input.checkbox-multiple-choice(type="checkbox", name=`option-${option}`, id=`option-${option}`, value=i)
+                        label(for=`option-${option}`)=option
+                        - i++;
+                .true-false
+                    label(for="answers") Respuesta
+                    - let k = 0;
+                    each option in ['Verdadero', 'Falso']
+                        input.checkbox-true-false(type="checkbox", name=`option-${option}`, id=`option-${option}`, value=k)
+                        label(for=`option-${option}`)=option
+                        - k++;
+
+            .form__group
+                button.btn.btn__formQuiz Subir Pregunta
+            
+    //- section.section_preview.main-grid
+    //-     h2 
+            

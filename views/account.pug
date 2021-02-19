@@ -1,0 +1,18 @@
+extends baseProfile 
+
+block profileContent 
+    .login-form
+        h2.login-form__h2 
+        form.form#signup-form
+            .form__pair
+                label.form__label(for='username') Nombre
+                input#username.form__input(type='username', placeholder='GordouWarrior', required)
+            .form__pair
+                label.form__label(for='email') Correo electrónico
+                input#email.form__input(type='email', placeholder='you@example.com', required)
+            .form__pair.form__photo-upload
+                img.form__user-photo(src=`#`, alt='User photo')
+                input#photo.form__upload(type='file', accept='image/*', name='photo')
+                label(for='photo') Seleccionar un nuevo avatar
+            .form__pair
+                button.btn.btn--green Guardar configuraciones

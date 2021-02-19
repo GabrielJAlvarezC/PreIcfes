@@ -1,0 +1,32 @@
+extends base
+
+mixin navItem(link, text, icon, active)
+    li(class=`${active ? 'side-nav--active' : ''}`)
+        a(href=`${link}`)
+            svg
+                use(xlink:href='#')
+            | #{text}
+
+block content
+    main.main
+        nav.nav__profile 
+            ul.side-nav
+                    +navItem('perfil', 'Perfil', '#', true)
+                    +navItem('sesiones', 'Sesiones', '#')
+                    +navItem('favoritos', 'Favoritos', 'credit-card')
+                    //- +navItem('#', 'Logros', 'briefcase')
+                    //- +navItem('#', 'Estadisticas', 'star')
+                    //- +navItem('#', 'Historial', 'credit-card')
+                    //- +navItem('#', 'Amigos', 'credit-card')
+                    //- +navItem('#', 'Configuración', 'credit-card')
+            - if (user.rol === 'admin')
+                    .admin-nav
+                        h5.admin-nav__heading Admin
+                        ul.side-nav
+                            +navItem('#', 'Administrar Usuarios', '#')
+                            +navItem('#', 'Administrar Sesiones', '#')
+                            +navItem('#', 'Administrar Preguntas', '#')
+                            +navItem('#', 'Administrar Comentarios', '#')
+                            +navItem('#', 'Administrar ToolTips', '#')
+
+        block profileContent

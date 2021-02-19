@@ -1,0 +1,54 @@
+header.header.main-grid
+    .header-content
+        a.logo-link(href="/") PvPScience
+            //-img.logo-img(src='')
+        button.open-nav.active(aria-label="Open navigation") &#9776;
+        if user
+            nav.nav
+                button.close-nav(aria-label="Close navigation") &times;
+                .menu 
+                    .dropdown-user-nav
+                        h3= `Hola, ${user.nombre}`
+                        .avatar-container 
+                            img.avatar-img(src="/img/users/danna.jpg", alt="Esta es tu foto")
+                    .dropdown-menu-nav 
+                        ul.nav-list 
+                            li.nav-item
+                                i.fas.fa-user
+                                a.nav-link(href="/perfil") Mi perfil
+                            li.nav-item
+                                i.fas.fa-inbox
+                                a.nav-link(href="/mensajes") Mensajes
+                            li.nav-item
+                                i.fas.fa-users
+                                a.nav-link(href="/invita") Invita a tus amigos
+                            li.nav-item 
+                                i.fas.fa-shopping-cart
+                                a.nav-link(href="/suscripciones") Suscripciones
+                            li.nav-item
+                                i.fas.fa-user-cog
+                                a.nav-link(href="/configuraciones") Configuraciones
+                            li.nav-item
+                                i.fas.fa-sign-out-alt
+                                a.nav-link.logout(href="/") Cerrar Sesión
+        else 
+            nav.nav
+                button.close-nav(aria-label="Close navigation") &times;
+                .dropdown-menu-nav 
+                    ul.nav-list 
+                        li.nav-item
+                            i.fas.fa-sign-in-alt
+                            a.nav-link(href="/iniciarSesion") Iniciar Sesión
+                        li.nav-item
+                            i.fas.fa-user-plus
+                            a.nav-link(href="/registro") Registrarse
+                            
+
+
+
+
+
+
+
+
+        
