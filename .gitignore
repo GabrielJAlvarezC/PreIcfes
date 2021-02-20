@@ -119,3 +119,4 @@ config.js
 # Bundle-parser
 public/js/bundle.js.map
 public/js/bundle.js
+public/css/style.css
