@@ -1,15 +1,38 @@
-extends base 
-
-block content
-    main.main
-        .loginForm
-            form.form.formLogin
-                .form__group
-                    label.form__label(for='email') Correo
-                    input#email.form__input(type='email', placeholder='you@example.com', required)
-                .form__group.ma-bt-md
-                    label.form__label(for='password') Contraseña
-                    input#password.form__input(type='password', placeholder='••••••••', required, minlength='8')
-                .form__group
-                    button.btn.btn--green Iniciar Sesión
-        a.link.linkSignup(href="/registro") No tengo cuenta
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        link(rel="icon" href="data:,")
+        link(href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet")
+        link(rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous")
+        link(rel="stylesheet", href="/css/style.css")
+        title= title 
+    body 
+        main.main
+            img.main__bckimg(src="/img/homePage/wave.png", alt="Imagen de fondo aun no definida")
+            .container
+                .container__logo-box
+                    img.container__logo(src="/img/homePage/bg.svg", alt="Logo Colegio")
+                .login-container
+                    form.form.formLogin
+                        .formLogin__avatar-box
+                            img.formLogin__avatar(src="/img/homePage/avatar.svg", alt="Avatar")
+                            h2.formLogin__main-title Bienvenido
+                        .formLogin__group.one
+                            .formLogin__i
+                                i.fas.fa-user
+                            .formLogin--grid
+                                h5.formLogin__input--placeholder Correo Electronico
+                                input#email.formLogin__input(type='email', required)
+                        .formLogin__group.two
+                            .formLogin__i
+                                i.fas.fa-lock
+                            .formLogin--grid
+                                h5.formLogin__input--placeholder Contraseña
+                                input#password.formLogin__input(type='password', required, minlength='8')
+                        a.link.link--forgot(href="/olvidarContraseña") ¿Olvidaste tu contraseña?
+                        a.link.link--signup(href="/registro") Registrarse
+                        button.btn.btn--login Iniciar Sesión
+        script(src='/js/bundle.js')
