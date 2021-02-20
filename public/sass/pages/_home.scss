@@ -1,0 +1,230 @@
+.main__bckimg {
+  position: fixed;
+  height: 100%; // 100% del container que es .container
+  left: 0;
+  bottom: 0;
+  z-index: -1;
+}
+
+.container {
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 11.2rem;
+  padding: 0 2rem;
+
+  &__logo-box {
+    // La primera columna del grid
+    display: flex;
+    justify-content: flex-end; // Poneel logo al costado derecho del contenedor
+    align-items: center;
+  }
+
+  &__logo {
+    width: 50rem;
+  }
+}
+
+.login-container {
+  // La segunda clumna del grid
+  // Centra el form en la segunda columna en el eje y
+  display: flex;
+  align-items: center;
+  text-align: center; // Centra TODOS los textos adentro de esta clase
+}
+
+.formLogin {
+  width: 36rem;
+
+  &__avatar {
+    width: 10rem;
+  }
+
+  &__main-title {
+    // Ocupa todo el width del padre form (36rem)
+    font-size: 4.5rem;
+    text-transform: uppercase;
+    margin: 1.5rem 0;
+    color: $color-titles;
+  }
+
+  &__input--placeholder {
+    position: absolute; // Para que se posicionen por encima de los inputs
+    left: 1rem;
+    top: 50%; // Lo mueve hacia abajo
+    transform: translateY(-50%); // Para hacer la animación
+    color: $color-primary-light;
+    font-size: 1.8rem;
+    transition: 0.3s;
+    // display: none;
+  }
+
+  &__i {
+    // Inline element
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    & i {
+      color: $color-primary-light;
+      font-size: 1.6rem;
+    }
+  }
+
+  &__input {
+    // Ocupa todo el width del padre form (36rem) gracias al width y al height
+    position: absolute; // Esta propiedad si bien esteticamente parece que no hace nada; en index.js nos ayudara a seleccionar el input en vez del placeholder, la razón es porque ambos tienen position: absolute; pero este aparece por encima gracias a el flujo de html
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    outline: none;
+    background: none;
+    padding: 0.8rem 1.12rem;
+    font-size: 2rem;
+    color: $color-input-text;
+    font-family: inherit;
+  }
+}
+
+.formLogin__group {
+  // Ocupa todo el width del padre form (36rem)
+  display: grid;
+  grid-template-columns: 7% 93%;
+  margin: 2.5rem 0;
+  padding: 0.5rem 0;
+  border-bottom: 2px solid $color-border-bottom;
+  position: relative; // Para hacer una animación con after y before
+
+  &::after,
+  &::before {
+    content: "";
+    position: absolute;
+    bottom: -0.2rem; // Oculta el border-bottom
+    width: 50%; // Cada uno tiene el 50% de la media de su padre
+    height: 2px;
+    background-color: $color-secondary-btn;
+    transition: 0.3s;
+  }
+
+  &::after {
+    right: 50%; // Posicionamos este a la izquierda
+  }
+
+  &::before {
+    left: 50%; // posicionamos este a la derecha
+  }
+
+  &.focus::after,
+  &.focus::before {
+    width: 50%;
+  }
+
+  &.one {
+    // Ocupa todo el width del form (36rem)
+    margin-top: 0;
+  }
+
+  &.two {
+    // Ocupa todo el width del form (36rem)
+    margin-bottom: 0.4rem;
+  }
+
+  & > div {
+    // one and two
+    position: relative; // Es necesario ya que vamos a hacer un position absolute obligatorio con respecto a estos div´s
+    height: 4.5rem;
+  }
+
+  &.focus .formLogin__i i {
+    // Mejorar estos selectores
+    color: $color-secondary-btn;
+    transition: 0.3s;
+  }
+
+  &.focus .formLogin--grid .formLogin__input--placeholder {
+    top: -0.5rem; // Ya defini el position absolute que es con respecto a .formLogin--grid
+    font-size: 1.5rem;
+  }
+}
+
+.link {
+  display: block; // Para que haya un salto de linea
+  text-align: right; // Se ponen a la derecha de su contenedor
+  text-decoration: none;
+  color: $color-primary-light;
+  font-size: 1.5rem;
+  transition: 0.3s;
+
+  &:hover {
+    color: $color-link-hover;
+  }
+}
+
+.btn--login {
+  //   display: block;
+  width: 100%; // Por defecto los botones ocupan su contenido con esto ocupa todo el padre
+  height: 5rem;
+  border-radius: 10rem;
+  margin: 1.6rem 0;
+  font-size: 2rem;
+  outline: none;
+  border: none;
+  background-image: linear-gradient(
+    to right,
+    $color-primary-btn,
+    $color-secondary-btn,
+    $color-primary-btn
+  );
+  cursor: pointer;
+  color: $color-white;
+  font-family: inherit;
+  background-size: 200%; // Para lograr un efecto con linear-gradient y el background-position: right; en el hover
+  transition: 0.5s;
+
+  &:hover {
+    background-position: right;
+  }
+}
+
+@media screen and (max-width: 1050px) {
+  .container {
+    gap: 8rem;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .formLogin {
+    width: 29rem;
+
+    &__main-title {
+      font-size: 3.8rem;
+      margin: 0.8rem 0;
+    }
+  }
+
+  .container {
+    &__logo {
+      width: 40rem;
+    }
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .container {
+    grid-template-columns: 1fr;
+    &__logo-box {
+      display: none;
+    }
+  }
+
+  .main__bckimg {
+    display: none;
+  }
+
+  .login-container {
+    justify-content: center;
+  }
+}
