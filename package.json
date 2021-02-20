@@ -8,7 +8,8 @@
     "start": "nodemon server.js",
     "start:prod": "cross-env NODE_ENV=production nodemon server.js",
     "watch:js": "parcel watch ./public/js/index.js --out-dir ./public/js --out-file bundle.js --public-url .",
-    "build:js": "parcel watch ./public/js/index.js --out-dir ./public/js --out-file bundle.js --public-url ."
+    "build:js": "parcel watch ./public/js/index.js --out-dir ./public/js --out-file bundle.js --public-url .",
+    "compile:sass": "node-sass ./public/sass/main.scss ./public/css/style.css -w"
   },
   "repository": {
     "type": "git",
@@ -45,6 +46,7 @@
     "xss-clean": "^0.1.1"
   },
   "devDependencies": {
+    "node-sass": "^5.0.0",
     "parcel-bundler": "^1.12.4"
   }
 }
