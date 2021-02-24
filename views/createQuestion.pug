@@ -1,68 +1,41 @@
 extends base 
 
 mixin getOptions(opt)
-    label(for=`options-${opt}`)= opt
-    textarea.options(name="options", id=`options-${opt}`) 
+    .option
+        input(type='checkbox' name=`checkbox-${opt}` id=`checkbox-${opt}`)
+        textarea.options(name="options", id=`options-${opt}`) 
 
 block content 
-    section.section__question.main-grid
-        h2 Crea tus preguntas
-        form#form__question
-            .form-group 
-                label(for='category') Materia 
-                select#category.form__select(name="category")
-                    option(value="" disabled selected hidden) Selecciona una materia
-                    option(value="Matemáticas") Matemáticas 
-                    option(value="Física")  Física
-            .form__group
-                label(for='topic') Temas
-                select.algo#topic.form__select(name='topic')
-                
-            .form__group
-                label(for='subtopic') Subtemas
-                select#subtopic.form__select(name='subtopic')
-
-            .form__group
-                label(for="difficulty") Dificultad Promedio
-                select#difficulty.form__select(name='difficulty')
-                    each number in [0, 1, 2, 3, 4, 5]
-                        option.select__option-difficulty(selected=`${number}`)= `${number}`
-
-            .form__group 
-                label(for="type") Tipo de pregunta
-                select#format.form__select(name='type') 
-                    option(value="" disabled selected hidden) Selecciona el formato de pregunta
-                    option(value="Verdadero o Falso") Verdadero o Falso
-                    option(value="Seleccion Multiple") Selección multiple
-                    option(value="Multiple Respuesta") Multiple Respuesta
-
-            .form__group
-                label(for='question') Pregunta
-                textarea#question(name="question")
-
-            .form__group.form__options
-                each opt in ['A', 'B', 'C', 'D']
-                    +getOptions(opt)
-
-            .form__group
-                .multiple-choice
-                    label(for="answers") Respuesta
-                    - let i = 0;
-                    each option in ['A','B','C','D']
-                        input.checkbox-multiple-choice(type="checkbox", name=`option-${option}`, id=`option-${option}`, value=i)
-                        label(for=`option-${option}`)=option
-                        - i++;
-                .true-false
-                    label(for="answers") Respuesta
-                    - let k = 0;
-                    each option in ['Verdadero', 'Falso']
-                        input.checkbox-true-false(type="checkbox", name=`option-${option}`, id=`option-${option}`, value=k)
-                        label(for=`option-${option}`)=option
-                        - k++;
-
-            .form__group
-                button.btn.btn__formQuiz Subir Pregunta
+    form
+        fieldset.stepOne(name='part-1')
+            legend Parte 1 / 2
             
-    //- section.section_preview.main-grid
-    //-     h2 
+            label(for='subject') Asignatura
+            input#subject(list='subjects')
+            datalist.subject(id='subjects')
+                each field in ['Biología', 'Ciencias Sociales', 'Competencias Humanas', 'Español', 'Física', 'Inglés', 'Matemáticas', 'Química']
+                    option(value=`${field}`)=field
             
+            label(for='topics' list='topics') Temas
+            input#topics(list='topics')
+            datalist.topics(id='topics')
+
+            label(for='subtopics' list='subtopics') Subtemas
+            input#subtopics(list='subtopics')
+            datalist.subtopics(id='subtopics')
+
+            label(for='difficulty') Dificultad
+            input#difficulty(for='difficulty' list='difficulty')
+            datalist.difficulty(id='difficulty')
+                each difficulty in [1,2,3,4,5]
+                    option(value=`${diffficulty}`)=difficulty
+            button.nextBtn(type='button') Siguiente
+        fieldset.stepTwo.hidden(name='part-2')
+            legend Parte 2 / 2
+            label(type='text') Pregunta
+            textarea.question(name="question")
+            each letter in ['A','B','C','D']
+                +getOptions(letter)
+            button.prevBtn(type='button') Atrás
+            button(type='button') Terminar
+
