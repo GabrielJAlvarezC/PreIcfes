@@ -62,12 +62,12 @@ const userSchema = new mongoose.Schema(
         values: ["admin", "estudiante", "contribuidor", "maestro"],
       },
     },
-
     foto: String,
     quices: [
       {
         type: mongoose.Schema.ObjectId,
         ref: "Quiz",
+        nota: Number
       },
     ],
     activo: {
@@ -75,21 +75,13 @@ const userSchema = new mongoose.Schema(
       type: Boolean,
       select: false,
     },
-
-    preguntasFavoritas: [
-      {
-        type: mongoose.Schema.ObjectId,
-        ref: "Question",
-      },
-    ],
-
     ultimoIngreso: Date,
     fechaCambioClave: Date,
     passwordResetToken: String,
     passwordResetExpires: Date,
-    algo: String,
   },
-  { toJSON: { virtuals: true }, toObject: { virtuals: true }, strict: false }
+  { toJSON: { virtuals: true }, toObject: { virtuals: true } }, 
+  { discriminatorKey: 'role' }
 );
 
 // Document middlewares:
