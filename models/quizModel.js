@@ -3,21 +3,15 @@ const { questionSchema } = require("./questionModel");
 
 const quizSchema = new mongoose.Schema(
   {
-    titulo: {
+    nombre: {
       type: String,
       trim: true,
       maxlength: [20, "El titulo no pude pasar los  20 caracteres"],
     },
     nPreguntas: {
       type: Number,
-      default: 5,
-      required: [true, "Los quices deben tener un número de preguntas"],
     },
-    dificultad: {
-      type: Number,
-      default: 1,
-    },
-    materia: {
+    asignatura: {
       type: String,
       required: [true, "Por favor escoja una materia"],
     },
@@ -38,10 +32,6 @@ const quizSchema = new mongoose.Schema(
       type: Date,
       required: [true, "Los quices deben tener una fecha de entrega"],
     },
-    activo: {
-      type: Boolean,
-      default: true,
-    },
     preguntas: [questionSchema],
     /* tipo: {
       type: String,
@@ -52,6 +42,17 @@ const quizSchema = new mongoose.Schema(
       type: Date,
       default: Date.now(),
     },
+    etapa: {
+      type: String,
+      default: "sin publicar"
+    },
+    tiempo: {
+      type: Date,
+      required: [true, "Los quices deben tener una fecha de duración"]
+    },
+    descripcion: {
+      type: String
+    }
   },
   {
     toJSON: { virtuals: true },
