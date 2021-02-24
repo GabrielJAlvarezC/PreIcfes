@@ -4,6 +4,7 @@ const AppError = require("../utils/appError");
 const { promisify } = require("util");
 const crypto = require("crypto");
 const sendEmail = require("../utils/email");
+const Student = require("../models/studentModel");
 const User = require("../models/userModel");
 
 const signToken = (id) => {
@@ -35,8 +36,8 @@ const createSendToken = (user, statusCode, res) => {
 module.exports = class Autenticacion {
   static signup = catchAsync(async (req, res, next) => {
     let newUser;
-    if (req.body.clave === req.body.confirmarClave && req.body.grado) {
-      newUser = await User.create({
+    if (req.body.clave === req.body.confirmarClave) {
+      newUser = await Student.create({
         nombre: req.body.nombre,
         apellido: req.body.apellido,
         correo: req.body.correo,
@@ -46,6 +47,7 @@ module.exports = class Autenticacion {
         grado: req.body.grado,
         jornada: req.body.jornada,
       });
+      console.log(await Student.find());
     } else {
       return next(new AppError("Las contraseñas no coinciden", 400));
     }
