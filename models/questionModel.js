@@ -30,9 +30,9 @@ const questionSchema = new mongoose.Schema({
       values: [
         "Matemáticas",
         "Física",
-        "Biologia",
+        "Biología",
         "Español",
-        "Ingles",
+        "Inglés",
         "Sociales",
         "Química",
         "Competencias Ciudadanas",
