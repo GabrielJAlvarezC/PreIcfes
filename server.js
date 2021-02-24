@@ -19,6 +19,7 @@ async function run() {
       useFindAndModify: false,
       useUnifiedTopology: true,
       useCreateIndex: true,
+      //dbName: 'Icfes'
     });
     console.log("Connected to db...");
   } catch (e) {
