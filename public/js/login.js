@@ -16,7 +16,6 @@ export class Login {
           location.assign("/tablero");
         }, 1500);
       }
-      console.log(res);
     } catch (err) {
       console.log("Hubo un error");
     }
