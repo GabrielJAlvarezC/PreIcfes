@@ -7,8 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon server.js",
     "start:prod": "cross-env NODE_ENV=production nodemon server.js",
-    "watch:js": "parcel watch ./public/js/index.js --out-dir ./public/js --out-file bundle.js --public-url .",
-    "build:js": "parcel watch ./public/js/index.js --out-dir ./public/js --out-file bundle.js --public-url .",
+    "watch:js": "parcel watch ./public/js/index.js --out-dir ./public/js/bundle --out-file bundle.js --public-url .",
+    "build:js": "parcel watch ./public/js/index.js --out-dir ./public/js/bundle --out-file bundle.js --public-url .",
     "compile:sass": "node-sass ./public/sass/main.scss ./public/css/style.css -w"
   },
   "repository": {
