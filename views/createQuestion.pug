@@ -2,7 +2,7 @@ extends base
 
 mixin getOptions(opt)
     .option
-        input(type='checkbox' name=`checkbox-${opt}` id=`checkbox-${opt}`)
+        input.radio(type='radio' name='option' id=`checkbox-${opt}`)
         textarea.options(name="options", id=`options-${opt}`) 
 
 block content 
@@ -10,23 +10,19 @@ block content
         fieldset.stepOne(name='part-1')
             legend Parte 1 / 2
             
-            label(for='subject') Asignatura
-            input#subject(list='subjects')
-            datalist.subject(id='subjects')
+            label.label-subject(for='subject') Asignatura
+            select#subject.form__select(name="category")
                 each field in ['Biología', 'Ciencias Sociales', 'Competencias Humanas', 'Español', 'Física', 'Inglés', 'Matemáticas', 'Química']
-                    option(value=`${field}`)=field
+                    option.option(value=`${field}`)=field
             
-            label(for='topics' list='topics') Temas
-            input#topics(list='topics')
-            datalist.topics(id='topics')
-
-            label(for='subtopics' list='subtopics') Subtemas
-            input#subtopics(list='subtopics')
-            datalist.subtopics(id='subtopics')
-
-            label(for='difficulty') Dificultad
-            input#difficulty(for='difficulty' list='difficulty')
-            datalist.difficulty(id='difficulty')
+            label.label-topics(for='topics' list='topics') Temas
+            select#topics
+            ul.topics
+            label.label-subtopics(for='subtopics' list='subtopics') Subtemas
+            select#subtopics
+            ul.subtopics
+            label.label-difficulty(for='difficulty') Dificultad 
+            select#difficulty
                 each difficulty in [1,2,3,4,5]
                     option(value=`${diffficulty}`)=difficulty
             button.nextBtn(type='button') Siguiente

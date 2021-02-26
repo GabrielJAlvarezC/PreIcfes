@@ -8,11 +8,12 @@ LoginDOM.animationInput();
 
 // Sign-up page
 SignupDOM.signup();
-
 // Question Form
 
 if (document.URL === 'http://127.0.0.1:3000/questions/create') {
+    
     QuestionForm.showPage();
+    QuestionForm.removeData();
     QuestionForm.showTopics();
     QuestionForm.showSubTopics();
 }

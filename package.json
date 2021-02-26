@@ -13,14 +13,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Dapstab/Pre-icfes.git"
+    "url": "git+https://github.com/GabrielJAlvarezC/PreIcfes.git"
   },
   "author": "Gabriel y David",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Dapstab/Pre-icfes/issues"
+    "url": "https://github.com/GabrielJAlvarezC/PreIcfes/issues"
   },
-  "homepage": "https://github.com/Dapstab/Pre-icfes#readme",
+  "homepage": "https://github.com/GabrielJAlvarezC/PreIcfes#readme",
   "dependencies": {
     "@babel/polyfill": "^7.12.1",
     "axios": "^0.21.1",

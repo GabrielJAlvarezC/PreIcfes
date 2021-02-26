@@ -1,13 +1,16 @@
 import { Filter } from "../utils/filterTopics";
 import { temas, subtemas } from "../utils/data";
-const topics = document.querySelector('.topics');;
-const subtopics = document.querySelector('.subtopics');
-const subjectInput = document.getElementById('subject');
-const topicsInput = document.getElementById('topics');
-const subtopicstInput = document.getElementById('subtopics');
-
+import { resize } from "../utils/resize";
+const topics = document.querySelector('#topics');;
+const subtopics = document.querySelector('#subtopics');
+const subject = document.querySelector('#subject');
+const textareas = document.querySelectorAll('textarea');
+const topicList = document.querySelector('.topics');
+const subTopicList = document.querySelector('.subtopics');
+let counter = 0;
 export class QuestionForm {
     static showPage = () => {
+        textareas.forEach( textarea => resize(textarea));
         let stepIndex = 0;
         const steps = document.querySelectorAll('fieldset');
         const nextBtns = document.querySelectorAll('.nextBtn');
@@ -23,23 +26,52 @@ export class QuestionForm {
             }));    
         }
     }
-    static showTopics = () => {
-        Filter.removeOptions(topics);
-        const subject = document.querySelector('.subject');
-        [...subject.options].forEach( option => {
-                option.onclick( function() {
-                    input.value = this.value;
-                })
-                console.log(e);
-                Filter.addOption(topics, temas[e.target.value]);
+
+    static closeTopic(name, tag) {
+        let data = document.createElement('li');
+        data.innerHTML = `<span class="close-${counter}">X</span> ${name}`
+        data.classList.add(`${tag}-${counter}`);
+        tag === 'topic' ? topicList.appendChild(data) : subTopicList.appendChild(data);
+        data = document.querySelector(`.${tag}-${counter}`);
+        let close = document.querySelector(`.close-${counter}`);
+        close.addEventListener('click', () => {
+            data.remove();
+        });
+        counter++;
+    }
+
+    static removeData() {
+        subject.addEventListener('change', () => {
+            
+            Filter.removeOptions(topics);
+            Filter.removeOptions(subtopics);
         });
     }
 
-    static showSubTopics = () => {
-        Filter.removeOptions(subtopics);
-        topics.addEventListener('change', e => {
-            console.log(e);
-            Filter.createDatalist(subtopics, subtemas[e.target.value]);
+    static showTopics() {
+        subject.addEventListener('change', e => {
+            Filter.removeOptions(topics);
+            Filter.addOptions(topics, temas[e.target.value]);
         });
     }
+
+    static showSubTopics() {
+        topics.addEventListener('change', e => {
+            this.closeTopic(e.target.value, 'topic');
+            //this.addSelect(topics);
+            Filter.removeOptions(subtopics);
+            Filter.addOptions(subtopics, subtemas[e.target.value]);
+        });
+        subtopics.addEventListener('change', e => {
+            this.closeTopic(e.target.value, 'subtopic');
+            //this.addSelect(subtopics);
+        });
+    }
+
+    static addSelect(domElement) {
+        const select = document.createElement('select');
+        domElement.insertAdjacentElement('afterend', select);
+    }
+
+    
 }

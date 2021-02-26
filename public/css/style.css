@@ -164,7 +164,7 @@ body {
   .login-container {
     justify-content: center; } }
 
-.stepTwo {
+.stepOne, .stepTwo {
   display: flex;
   flex-direction: column; }
 
@@ -173,3 +173,26 @@ body {
 
 select {
   margin: 1.2em; }
+
+.label-subject {
+  margin-top: 1.2em; }
+
+select {
+  width: 300px; }
+
+label {
+  margin-left: 15px; }
+
+textarea {
+  overflow: hidden;
+  resize: none; }
+
+.question {
+  width: 400px; }
+
+.options {
+  width: 250px; }
+
+li[class^="topic-"], li[class^="subtopic-"] {
+  border: 2px solid gray;
+  display: inline-block; }
